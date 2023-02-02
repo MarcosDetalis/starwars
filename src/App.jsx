@@ -36,7 +36,8 @@ const App = () => {
 
   const data = () => {
     console.log(textBuscar);
-    return textBuscar
+     const text = buscarpersonaje.current.value;
+    return text
   };
   
    const buscarIntro = (e) => {
@@ -97,9 +98,7 @@ const App = () => {
 
           <div className="col-auto">
             <button type="button" className="btn btn-outline-success">
-              <Link to="/demo/"onClick={data}>
-                Enviar
-              </Link>
+              <Link to={`/demo/${textBuscar}`}>Enviar</Link>
             </button>
           </div>
         </div>
