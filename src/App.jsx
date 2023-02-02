@@ -20,11 +20,13 @@ const App = () => {
      getSelecPersonaje(selecpersonaje).then(setDetalles);
    }, [selecpersonaje]);
 
+
    const MostarDetalle = (personaje) => {
      console.log("first");
      const id = Number(personaje.url.split("/").slice(-2)[0]);
      console.log(personaje);
      setSelecPersonaje(id);
+
    };
 
    const buscar = (e) => {
@@ -44,21 +46,22 @@ const App = () => {
      if (e.key !== "Enter") return;
      buscarpersonaje.current.value = "";
      setDetalles({});
-
      // getBusqueda(textBuscar).then((data) => setPersonaje(data.results));
      setSelecPersonaje(textBuscar);
+     
+     console.log("first,", detalles);
+     
+   };
+   const [datos, estableceDatos] = useState("");
+   const padreAHijo = () => {
+     estableceDatos(detalles)
+
    };
  
- 
-  
-
   return (
     <div className="Aplicacion">
       <Routes>
         <Route path="sobre-nosotros" element={<Layout />} />
-        <Route path="*" element={<NotFound />} />
-
-        <Route path="/demo/:id" element={<Demo />} />
       </Routes>
 
       <Link to="sobre-nosotros">
@@ -102,16 +105,10 @@ const App = () => {
             </button>
           </div>
         </div>
-
-        {detalles && (
-          <aside>
-            <h1>{detalles.name}</h1>
-            <h2>Altura:{detalles.height}</h2>
-            <h3>Masa: {detalles.mass}</h3>
-            <h4> color de pelo: {detalles.hair_color}</h4>
-            <h5> Edad :{detalles.birth_year}</h5>
-          </aside>
-        )}
+        <Routes>
+          <Route path="/demo/:id" element={<Demo />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </div>
     </div>
   );
