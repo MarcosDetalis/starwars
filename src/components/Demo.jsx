@@ -17,7 +17,7 @@ useEffect(() => {
       setResponseData(response.data);
     })
     .catch((error) => {
-      console.log(",el error", error.data);
+      console.log(",el error", error.status);
     });
 }, []);
 
