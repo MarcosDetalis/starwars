@@ -50,23 +50,19 @@ const App = () => {
      setSelecPersonaje(textBuscar);
      
      console.log("first,", detalles);
-     
+       
    };
-   const [datos, estableceDatos] = useState("");
-   const padreAHijo = () => {
-     estableceDatos(detalles)
-
-   };
+   
  
   return (
     <div className="Aplicacion">
       <Routes>
-        <Route path="sobre-nosotros" element={<Layout />} />
-      </Routes>
+        <Route path="*" element={<NotFound />} />
 
-      <Link to="sobre-nosotros">
-        Haz clic para ver la página sobre nosotros
-      </Link>
+        <Route path="/demo/:id" element={<Demo />} />
+
+        <Route path="/Layout" element={<Layout />} />
+      </Routes>
 
       <div className="m-3">
         <div className="row g-3">
@@ -103,12 +99,22 @@ const App = () => {
             <button type="button" className="btn btn-outline-success">
               <Link to={`/demo/${textBuscar}`}>Enviar</Link>
             </button>
+
+            <Link to="/Layout" state={detalles}>
+              Link Text
+            </Link>
+
+            {detalles && (
+              <aside>
+                <h1>{detalles.name}</h1>
+                <h2>Altura:{detalles.height}</h2>
+                <h3>Masa: {detalles.mass}</h3>
+                <h4> color de pelo: {detalles.hair_color}</h4>
+                <h5> Edad :{detalles.birth_year}</h5>
+              </aside>
+            )}
           </div>
         </div>
-        <Routes>
-          <Route path="/demo/:id" element={<Demo />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
       </div>
     </div>
   );

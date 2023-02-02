@@ -7,24 +7,29 @@ import axios from "axios";
 function Demo() {
   const params = useParams();
 
-const [responseData, setResponseData] = useState([]);
-
-useEffect(() => {
-  axios
-    .get("https://swapi.dev/api/people/"+params.id)
-    .then((response) => {
-      console.log("p", response.data);
-      setResponseData(response.data);
-    })
-    .catch((error) => {
-      console.log(",el error", error.status);
-    });
-}, []);
+  console.log(params.id);
 
   
+  const [responseData, setResponseData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://swapi.dev/api/people/" + params.id)
+      .then((response) => {
+        console.log("p", response.data);
+        setResponseData(response.data);
+      })
+      .catch((error) => {
+        console.log(",el error", error);
+      });
+  }, []);
+
+
+  console.log("jooo", responseData);
   
   return (
     <div>
+      {params.id}
       {responseData && (
         <aside>
           <h1>{responseData.name}</h1>
