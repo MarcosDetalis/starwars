@@ -1,6 +1,6 @@
 import React from "react";
  
-function Demo(props) {
+function Listadepersonajes(props) {
   console.log("dfgdf,,,", props.datos);
 
   return (
@@ -14,4 +14,4 @@ function Demo(props) {
   );
 }
 
-export default Demo;
+export default Listadepersonajes;

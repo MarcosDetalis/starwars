@@ -1,7 +1,12 @@
-import { BrowserRouter, Routes, Route, Link, redirect } from "react-router-dom";
+
+import "./App.css";
+import { Routes, Route, Link } from "react-router-dom";
 import NotFound from "./components/NotFound";
-import Demo from "./components/Demo";
+
+import Listadepersonajes from "./components/Listadepersonajes";
+
 import { useState, useEffect, useRef } from "react";
+
 import { getPersojes, getSelecPersonaje } from "./api/service";
 
 const App = () => {
@@ -20,7 +25,6 @@ const App = () => {
   }, [selecpersonaje]);
 
   const MostarDetalle = (personaje) => {
-    console.log("first");
     const id = Number(personaje.url.split("/").slice(-2)[0]);
     console.log(personaje);
     setSelecPersonaje(id);
@@ -29,19 +33,13 @@ const App = () => {
   const buscar = (e) => {
     e.preventDefault();
     const text = buscarpersonaje.current.value;
-    console.log("first",text)
     settextBuscar(text);
   };
-
-  
 
   const buscarIntro = () => {
     setDetalles({})
     setSelecPersonaje(textBuscar);  
   };
-
-      console.log("first,", detalles);
-       console.log("sele", selecpersonaje);
 
   
   return (
@@ -94,8 +92,8 @@ const App = () => {
                 ) : (
                   <Routes>
                     <Route
-                      path="/demo/:id"
-                      element={<Demo datos={detalles} />}
+                      path="/people/:id"
+                      element={<Listadepersonajes datos={detalles} />}
                     />
                   </Routes>
                 )}
