@@ -1,41 +1,17 @@
-import React from 'react'
-import { useParams } from "react-router-dom";
-import { getPersojes, getSelecPersonaje } from "../api/service";
-import { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import React from "react";
+ 
+function Demo(props) {
+  console.log("dfgdf,,,", props.datos);
 
-function Demo() {
-  const params = useParams();
-
-const [responseData, setResponseData] = useState([]);
-
-useEffect(() => {
-  axios
-    .get("https://swapi.dev/api/people/"+params.id)
-    .then((response) => {
-      console.log("p", response.data);
-      setResponseData(response.data);
-    })
-    .catch((error) => {
-      console.log(",el error", error.data);
-    });
-}, []);
-
-  
-  
   return (
     <div>
-      {responseData && (
-        <aside>
-          <h1>{responseData.name}</h1>
-          <h2>Altura:{responseData.height}</h2>
-          <h3>Masa: {responseData.mass}</h3>
-          <h4> color de pelo: {responseData.hair_color}</h4>
-          <h5> Edad :{responseData.birth_year}</h5>
-        </aside>
-      )}
+      <h1>{props.datos.name}</h1>
+      <h2>Altura:{props.datos.height}</h2>
+      <h3>Masa: {props.datos.mass}</h3>
+      <h4> color de pelo: {props.datos.hair_color}</h4>
+      <h5> Edad :{props.datos.birth_year}</h5>
     </div>
   );
 }
 
-export default Demo
+export default Demo;
